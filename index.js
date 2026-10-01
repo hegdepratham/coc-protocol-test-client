@@ -88,14 +88,14 @@ const socket = net.createConnection(SERVER_PORT, SERVER_IP, () => {
 })
 
 function sendLogin(socket) {
-  console.log('Handshake OK -- sending Login (new player, blank token)...')
+  console.log('Handshake OK -- sending Login (existing player)...')
   const writer = new ByteWriter()
   writer.writeInt(0)        // HighID
-  writer.writeInt(0)        // LowID
-  writer.writeString('')    // Token (blank = create new player)
+  writer.writeInt(2)        // LowID  <-- changed from 0
+  writer.writeString('b283da8cb979b36fc642260aacdb')  // Token <-- changed from ''
   writer.writeInt(6)        // Major
   writer.writeInt(0)        // Minor
-  writer.writeInt(56)       // Build (6.56 -- matches a supported version)
+  writer.writeInt(56)       // Build
   sendPacket(socket, 10101, 1, writer.toBuffer())
 }
 
