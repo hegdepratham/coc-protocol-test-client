@@ -1,7 +1,7 @@
 const net = require('net')
 const RC4 = require('simple-rc4')
 
-const SERVER_IP = '127.0.0.1'
+const SERVER_IP = process.argv[2] || '127.0.0.1'
 const SERVER_PORT = 9339
 const RC4_KEY = 'fhsd6f86f67rt8fw78fw789we78r9789wer6re' // must match Server.RC4Key in config.json
 
